@@ -16,12 +16,10 @@ public class GameManager : MonoBehaviour {
     private float timer;
     private int clicks;
     private int highScore;
-    private bool timerActive = false;
+    private bool timerActive;
 
     void Start() {
-        timer = timeLimit;
-        clicks = 0;
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        SetDefaultValues();
     }
 
     void Update() {
@@ -55,5 +53,12 @@ public class GameManager : MonoBehaviour {
     private void OnTap(InputValue _) {
         if (timerActive) clicks++;
         else if (timer >= 0) timerActive = true;
+    }
+
+    private void SetDefaultValues() {
+        timer = timeLimit;
+        clicks = 0;
+        timerActive = false;
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 }
