@@ -1,17 +1,28 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour {
 
     [Header("Game")]
     [SerializeField] private float timeLimit = 10f;
+    [SerializeField] private float reward = 2f;
 
     [Header("UI")]
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text clicksText;
     [SerializeField] private TMP_Text highScoreText;
+    [SerializeField] private GameObject buttonsPanel;
+
+    private static GameManager _instance;
+    public static GameManager Instance {
+        get {
+            if (_instance == null) {
+                _instance = FindObjectOfType<GameManager>();
+            }
+            return _instance;
+        }
+    }
 
     private float timer;
     private int clicks;
@@ -24,9 +35,7 @@ public class GameManager : MonoBehaviour {
 
     void Update() {
         ShowStas();
-        if (timerActive) {
-            CountDown();
-        }
+        if (timerActive) CountDown();
     }
 
     private void ShowStas() {
@@ -46,19 +55,32 @@ public class GameManager : MonoBehaviour {
             if (clicks > highScore) {
                 highScore = clicks;
                 PlayerPrefs.SetInt("HighScore", highScore);
+                PlayerPrefs.Save();
+                SetDefaultValues();
+            }
+            else {
+                InterstitialManager.Instance.ShowInterstitialAd();
             }
         }
     }
 
-    private void OnTap(InputValue _) {
+    public void OnTap() {
         if (timerActive) clicks++;
-        else if (timer >= 0) timerActive = true;
+        else if (timer >= 0) {
+            timerActive = true;
+            buttonsPanel.SetActive(false);
+        }
     }
 
-    private void SetDefaultValues() {
+    public void AddReward() {
+        timer += reward;
+    }
+
+    public void SetDefaultValues() {
         timer = timeLimit;
         clicks = 0;
         timerActive = false;
         highScore = PlayerPrefs.GetInt("HighScore", 0);
+        buttonsPanel.SetActive(true);
     }
 }

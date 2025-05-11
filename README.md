@@ -6,10 +6,10 @@
 que adaptar a la plataforma (y resolución) en la que se esté jugando.
 - ✅ Puedo ver el mejor puntaje obtenido hasta el momento en la pantalla de juego.
 - Puedo ver los créditos entrando a la pantalla de créditos.
-- Ads: En Android, implementar:
-  - un banner que esté visible todo el tiempo,
-  - un interstitial que aparezca cada vez que se termina un juego y no se batió un nuevo récord.
-  - un video reward que, al verlo, te dé 2 segundos mas en la próxima partida.
+- ✅ Ads: En Android, implementar:
+  - ✅ un banner que esté visible todo el tiempo,
+  - ✅ un interstitial que aparezca cada vez que se termina un juego y no se batió un nuevo récord.
+  - ✅ un video reward que, al verlo, te dé 2 segundos mas en la próxima partida.
 - ✅ Local Notis: En Android, implementar
   - ✅ una push notification que llegue a los 10 mins de haber jugado por última vez (en el texto de
 la noti debe decir el nombre del alumno/a que hizo el juego.
