@@ -14,8 +14,10 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener {
     [SerializeField] private InterstitialManager interstitialManager;
     [SerializeField] private RewardAdsManager rewardedManager;
 
+#pragma warning disable 0414
     private string gameId;
     private bool testMode = true;
+#pragma warning restore 0414
 
     void Awake() {
 #if UNITY_ANDROID

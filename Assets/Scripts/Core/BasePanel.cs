@@ -9,7 +9,6 @@ public abstract class BasePanel : MonoBehaviour {
     protected OrientationSettings currentSettings;
 
     void Awake() {
-        orientation = Input.deviceOrientation;
         ApplySettings();
     }
 
@@ -20,12 +19,14 @@ public abstract class BasePanel : MonoBehaviour {
     private void CheckOrientation() {
         bool isLandscape = Screen.width > Screen.height;
 
-        bool orientationChanged = isLandscape
-            ? orientation != DeviceOrientation.LandscapeLeft && orientation != DeviceOrientation.LandscapeRight
-            : orientation != DeviceOrientation.Portrait && orientation != DeviceOrientation.PortraitUpsideDown;
+        // Determine the new orientation based on the screen dimensions
+        DeviceOrientation newOrientation = isLandscape
+            ? DeviceOrientation.LandscapeLeft
+            : DeviceOrientation.Portrait;
 
-        if (orientationChanged) {
-            orientation = Input.deviceOrientation;
+        // Verify if the orientation has changed
+        if (newOrientation != orientation) {
+            orientation = newOrientation;
             ApplySettings();
         }
     }

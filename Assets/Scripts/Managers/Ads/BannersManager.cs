@@ -25,16 +25,6 @@ public class BannersManager : MonoBehaviour {
 #elif UNITY_IOS
         _unityId = _iosUnityId;
 #endif
-
-        if (string.IsNullOrEmpty(_unityId)) {
-            Debug.LogError("Unity ID is not set for this platform");
-            return;
-        }
-
-        if (!Advertisement.isSupported) {
-            Debug.LogError("Advertisement is not supported on this platform");
-            return;
-        }
     }
 
     internal void Initialize() {
