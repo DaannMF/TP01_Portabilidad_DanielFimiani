@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private TMP_Text clicksText;
     [SerializeField] private TMP_Text highScoreText;
     [SerializeField] private GameObject buttonsPanel;
+    [SerializeField] private GameObject highScorePanel;
 
     private static GameManager _instance;
     public static GameManager Instance {
@@ -53,14 +54,13 @@ public class GameManager : MonoBehaviour {
         if (timer <= 0) {
             timerActive = false;
             if (clicks > highScore) {
-                highScore = clicks;
-                PlayerPrefs.SetInt("HighScore", highScore);
-                PlayerPrefs.Save();
-                SetDefaultValues();
+                HandleHighScore();
             }
             else {
                 InterstitialManager.Instance.ShowInterstitialAd();
             }
+
+            SetDefaultValues();
         }
     }
 
@@ -74,6 +74,15 @@ public class GameManager : MonoBehaviour {
 
     public void AddReward() {
         timer += reward;
+    }
+
+    private void HandleHighScore() {
+        if (clicks > highScore) {
+            highScore = clicks;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            PlayerPrefs.Save();
+            highScorePanel.SetActive(true);
+        }
     }
 
     public void SetDefaultValues() {

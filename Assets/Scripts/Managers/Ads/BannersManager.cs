@@ -50,14 +50,14 @@ public class BannersManager : MonoBehaviour {
     private void OnBannerLoaded() {
         Debug.Log("Banner loaded successfully");
 
-        ShowBanner();
+        ShowBannerAd();
     }
 
-
-    public void ShowBanner() {
+    public void ShowBannerAd() {
         Advertisement.Banner.Show(_unityId);
     }
-    public void HideBanner() {
+
+    public void HideBannerAd() {
         Advertisement.Banner.Hide();
     }
 

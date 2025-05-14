@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class InterstitialManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener {
+public class RewardAdsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener {
 
 #pragma warning disable 0414
-    [SerializeField] private string _androidUnityId = "Interstitial_Android";
-    [SerializeField] private string _iosUnityId = "Interstitial_iOS";
+    [SerializeField] private string _androidUnityId = "Rewarded_Android";
+    [SerializeField] private string _iosUnityId = "Rewardedl_iOS";
 #pragma warning restore 0414
 
-    private static InterstitialManager _instance;
-    public static InterstitialManager Instance {
+    private static RewardAdsManager _instance;
+    public static RewardAdsManager Instance {
         get {
             if (_instance == null) {
-                _instance = FindObjectOfType<InterstitialManager>();
+                _instance = FindObjectOfType<RewardAdsManager>();
             }
             return _instance;
         }
@@ -33,9 +33,9 @@ public class InterstitialManager : MonoBehaviour, IUnityAdsLoadListener, IUnityA
         Advertisement.Load(_unityId, this);
     }
 
-    public void ShowInterstitialAd() {
+    public void ShowRewardedAd() {
         if (isLoaded) {
-            BannersManager.Instance.HideBanner();
+            BannersManager.Instance.HideBannerAd();
             Advertisement.Show(_unityId, this);
             isLoaded = false;
         }
@@ -65,8 +65,11 @@ public class InterstitialManager : MonoBehaviour, IUnityAdsLoadListener, IUnityA
     }
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState) {
-        GameManager.Instance.SetDefaultValues();
-        BannersManager.Instance.ShowBanner();
-        Initialize();
+        if (_unityId.Equals(_unityId) && showCompletionState == UnityAdsShowCompletionState.COMPLETED) {
+            Debug.Log($"Rewarded ad completed: {showCompletionState}");
+            BannersManager.Instance.ShowBannerAd();
+            GameManager.Instance.AddReward();
+            Initialize();
+        }
     }
 }
