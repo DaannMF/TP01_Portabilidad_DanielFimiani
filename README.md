@@ -25,3 +25,11 @@ la noti debe decir el nombre del alumno/a que hizo el juego.
   - La interfaz mostrada es solo a modo de ejemplo, no necesitan hacerla igual, pero si o si tiene
     que tener un borde, marco o fondo que se adapte a las distintas resoluciones.
 - Fecha de entrega: hasta las 18 hrs del 16 de Mayo de 2025
+
+## Link a Itchio
+
+Puedes jugar este juego en el siguiente [enlace](https://danielfimiani.itch.io/clicker)
+
+## Link a Android Store
+
+Puedes ver este juego en la playstore en el siguiente [enlace](https://play.google.com/apps/test/com.dfimiani.clicker/2)
