@@ -1,10 +1,15 @@
 using System.Collections;
+#if !UNITY_WEBGL
 using Unity.Notifications.Android;
+#endif
 using UnityEngine;
 
 public class NotificationsManager : MonoBehaviour {
+#pragma warning disable 0414
     private static string CHANNEL_ID = "notis";
+#pragma warning restore 0414
 
+#if !UNITY_WEBGL
     void Start() {
         if (PlayerPrefs.HasKey("NotisChanel_Created")) {
             // Create the notification group
@@ -47,7 +52,7 @@ public class NotificationsManager : MonoBehaviour {
         ScheduleNotification();
     }
 
-    public void ScheduleNotification() {
+    private void ScheduleNotification() {
         // Cancel all previous notifications
         AndroidNotificationCenter.CancelAllScheduledNotifications();
 
@@ -61,4 +66,5 @@ public class NotificationsManager : MonoBehaviour {
         // Schedule the notification
         AndroidNotificationCenter.SendNotification(notification10Minutes, CHANNEL_ID);
     }
+#endif
 }
