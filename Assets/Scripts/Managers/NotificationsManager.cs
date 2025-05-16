@@ -60,7 +60,7 @@ public class NotificationsManager : MonoBehaviour {
         var notification10Minutes = new AndroidNotification() {
             Title = "TP01 Portabilida y optimización",
             Text = "Juego creado por Daniel Fimiani",
-            FireTime = System.DateTime.Now.AddMinutes(1),
+            FireTime = System.DateTime.Now.AddMinutes(10),
         };
 
         // Schedule the notification

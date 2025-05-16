@@ -32,4 +32,4 @@ Puedes jugar este juego en el siguiente [enlace](https://danielfimiani.itch.io/c
 
 ## Link a Android Store
 
-Puedes ver este juego en la playstore en el siguiente [enlace](https://play.google.com/apps/test/com.dfimiani.clicker/2)
+Puedes ver este juego en la playstore en el siguiente [enlace](https://play.google.com/apps/test/com.dfimiani.clicker2/1)
